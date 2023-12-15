@@ -42,6 +42,11 @@ public class LoginPage extends JFrame {
     private JButton registerPageButton;
 
     /**
+     * The current frame to display.
+     */
+    protected static JFrame frame;
+
+    /**
      * User manager.
      */
     private final UserManager userManager;
@@ -61,19 +66,21 @@ public class LoginPage extends JFrame {
                 userManager.login(username, password);
             }
         });
+
+        registerPageButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainFrame.setPanel(new RegisterPage().getRegisterPagePanel());
+            }
+        });
     }
 
     /**
-     * Main class.
+     * Returns login page panel.
      *
-     * @param args - the arguments.
+     * @return the login JPanel.
      */
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("Audio Manager");
-
-        frame.setContentPane(new LoginPage().loginPagePanel);
-        frame.setSize(700, 500);
-        frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
-        frame.setVisible(true);
+    public JPanel getLoginPagePanel() {
+        return this.loginPagePanel;
     }
 }
