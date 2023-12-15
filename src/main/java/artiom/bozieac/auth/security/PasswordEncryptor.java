@@ -1,4 +1,4 @@
-package artiom.bozieac.security;
+package artiom.bozieac.auth.security;
 
 import artiom.bozieac.utils.ApplicationProperties;
 import artiom.bozieac.utils.ApplicationPropertiesConstants;
