@@ -27,9 +27,6 @@ public class ApplicationProperties {
      */
     private static final Properties applicationProperties = new Properties();
 
-    /**
-     * Static initializer to read the properties from disk.
-     */
     static {
         try {
             applicationProperties.load(new FileInputStream(APPLICATION_PROPERTIES_PATH));
