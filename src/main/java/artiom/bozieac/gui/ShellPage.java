@@ -1,11 +1,11 @@
 package artiom.bozieac.gui;
 
 import artiom.bozieac.commands.CommandsExecutor;
+import artiom.bozieac.commands.CommandsProcessor;
 
 import javax.swing.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 
 /**
  * Code representation of Shell page GUI.
@@ -40,11 +40,10 @@ public class ShellPage {
                 }
 
                 if (!shellInput.getText().isEmpty() && e.getKeyCode() == KeyEvent.VK_ENTER) {
-                    final String[] parsedCommand = shellInput.getText().toLowerCase().split(" ");
-                    final String command = parsedCommand[0];
-                    shellInput.setText("");
+                    final String input = shellInput.getText();
+                    CommandsExecutor.executeMethodForCommand(shellOutput, CommandsProcessor.getCommand(input), CommandsProcessor.getArguments(input));
 
-                    CommandsExecutor.executeMethodForCommand(shellOutput, command, Arrays.copyOfRange(parsedCommand, 1, parsedCommand.length));
+                    shellInput.setText("");
                 }
             }
         });

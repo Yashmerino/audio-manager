@@ -1,15 +1,25 @@
 package artiom.bozieac.commands;
 
+import artiom.bozieac.utils.ApplicationProperties;
 import artiom.bozieac.utils.AudioExtensions;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.swing.*;
+import java.awt.*;
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.FileSystems;
 
 /**
  * Class that executes commands.
  */
 public class CommandsExecutor {
+
+    /**
+     * Logger instance.
+     */
+    private static final Logger logger = LogManager.getLogger(CommandsExecutor.class);
 
     /**
      * JTextArea which holds the shell output.
@@ -67,6 +77,25 @@ public class CommandsExecutor {
     }
 
     /**
+     * Executes the command "play" - play audio file.
+     *
+     * @param args - The args.
+     */
+    public static void play(final String... args) {
+        if (args.length > 0) {
+            final File audio = new File(currentDirectory, args[0]);
+
+            try {
+                Desktop.getDesktop().open(audio);
+            } catch (IllegalArgumentException e) {
+                shellOutput.append(audio.getName() + " couldn't be played. The file doesn't exist.");
+            } catch (IOException e) {
+                shellOutput.append(audio.getName() + " couldn't be played. The file may be corrupt.");
+            }
+        }
+    }
+
+    /**
      * Executes the method linked to the command.
      *
      * @param shellOutput - The JTextArea that stores the shell output.
@@ -88,6 +117,9 @@ public class CommandsExecutor {
             }
             case CommandsConstants.LS -> {
                 ls();
+            }
+            case CommandsConstants.PLAY -> {
+                play(args);
             }
             default -> {
                 shellOutput.append(TextConstants.SYNTAX_ERROR);
