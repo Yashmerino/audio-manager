@@ -63,8 +63,17 @@ public class LoginPage extends JFrame {
                 final String username = usernameField.getText();
                 final String password = passwordField.getText();
 
+                if (username.isBlank() || password.isBlank()) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Empty fields!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 if (userManager.login(username, password)) {
                     MainFrame.setPanel(new ShellPage().getShellPanel());
+                } else {
+                    JOptionPane.showMessageDialog(new JFrame(), "Username doesn't exist!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                 }
             }
         });

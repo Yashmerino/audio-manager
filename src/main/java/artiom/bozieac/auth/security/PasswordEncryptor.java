@@ -1,7 +1,5 @@
 package artiom.bozieac.auth.security;
 
-import artiom.bozieac.utils.ApplicationProperties;
-import artiom.bozieac.utils.ApplicationPropertiesConstants;
 import de.mkammerer.argon2.Argon2;
 import de.mkammerer.argon2.Argon2Factory;
 
@@ -33,6 +31,10 @@ public class PasswordEncryptor {
      * @return <code>true</code> or <code>false</code>
      */
     public Boolean verifyPassword(final String password, final String hash) {
-        return argon2.verify(hash, password.toCharArray());
+        try {
+            return argon2.verify(hash, password.toCharArray());
+        } catch (NullPointerException e) {
+            return false;
+        }
     }
 }

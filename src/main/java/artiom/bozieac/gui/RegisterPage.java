@@ -1,6 +1,7 @@
 package artiom.bozieac.gui;
 
 import artiom.bozieac.auth.UserManager;
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -60,7 +61,15 @@ public class RegisterPage extends JFrame {
         registerButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                userManager.register(usernameField.getText(), passwordField.getText());
+                if (usernameField.getText().isBlank() || passwordField.getText().isBlank()) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Empty fields!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+
+                if (!userManager.register(usernameField.getText(), passwordField.getText())) {
+                    JOptionPane.showMessageDialog(new JFrame(), "Username already exists!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
     }

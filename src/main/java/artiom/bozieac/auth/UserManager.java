@@ -24,10 +24,16 @@ public class UserManager {
      * @param username - The user's username.
      * @param password - The user's password.
      */
-    public void register(final String username, final String password) {
+    public boolean register(final String username, final String password) {
+        if (databaseManager.usernameExists(username)) {
+            return false;
+        }
+
         final String encryptedPassword = passwordEncryptor.encrypt(password);
 
         this.databaseManager.addUser(username, encryptedPassword);
+
+        return true;
     }
 
     /**
@@ -35,6 +41,7 @@ public class UserManager {
      *
      * @param username - The user's username.
      * @param password - The user's password.
+     * @return <code>true</code> or <code>false</code>
      */
     public boolean login(final String username, final String password) {
         String encryptedPassword = this.databaseManager.getUserPasswordFromDB(username);

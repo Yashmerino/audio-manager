@@ -112,4 +112,35 @@ public class DatabaseManager {
 
         return encryptedPassword;
     }
+
+    /**
+     * Checks if a username already exists.
+     *
+     * @param username - The username.
+     * @return <code>true</code> or <code>false</code>
+     */
+    public boolean usernameExists(final String username) {
+        String extractedUsername = null;
+
+        try (final Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+             final Statement stmt = conn.createStatement();
+        ) {
+            final String sql = "SELECT username FROM users WHERE username = \'" + username + "\';";
+            ResultSet resultSet = stmt.executeQuery(sql);
+
+            while (resultSet.next()) {
+                extractedUsername = resultSet.getString("username");
+
+                if (extractedUsername != null) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            if (logger.isErrorEnabled()) {
+                logger.error("Usernames couldn't be extracted: ", e);
+            }
+        }
+
+        return false;
+    }
 }
