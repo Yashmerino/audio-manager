@@ -63,7 +63,9 @@ public class LoginPage extends JFrame {
                 final String username = usernameField.getText();
                 final String password = passwordField.getText();
 
-                userManager.login(username, password);
+                if (userManager.login(username, password)) {
+                    MainFrame.setPanel(new ShellPage().getShellPanel());
+                }
             }
         });
 
