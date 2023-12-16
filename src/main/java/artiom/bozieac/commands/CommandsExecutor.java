@@ -62,9 +62,16 @@ public class CommandsExecutor {
 
     /**
      * Executes the command "ls" - list audio files.
+     *
+     * @param args - The args.
      */
-    public static void ls() {
-        final File directory = new File(currentDirectory);
+    public static void ls(final String... args) {
+        File directory = new File(currentDirectory);
+
+        if (args.length > 0) {
+            directory = new File(args[0]);
+        }
+
         File[] files = directory.listFiles();
 
         if (files != null) {
@@ -74,6 +81,7 @@ public class CommandsExecutor {
                 }
             }
         }
+
     }
 
     /**
@@ -132,7 +140,7 @@ public class CommandsExecutor {
                 cd(args);
             }
             case CommandsConstants.LS -> {
-                ls();
+                ls(args);
             }
             case CommandsConstants.PLAY -> {
                 play(args);

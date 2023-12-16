@@ -10,7 +10,6 @@ public class TextConstants {
      */
     public final static String HELP = "Existing commands:\n" +
             "help - To print existing commands.\n" +
-            "help COMMAND - To print example of a command.\n" +
             "cdir - To print current directory.\n" +
             "cd PATH - To set a new directory.\n" +
             "ls - To print audio files in the currrent directory.\n" +
