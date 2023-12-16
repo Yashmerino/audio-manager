@@ -34,21 +34,21 @@ public class CommandsExecutor {
     /**
      * Executes the command "help" - help
      */
-    public static void help() {
+    private static void help() {
         shellOutput.append(CommandsConstants.commandToTextMap.get(CommandsConstants.HELP));
     }
 
     /**
      * Executes the command "cdir" - current directory.
      */
-    public static void cdir() {
+    private static void cdir() {
         shellOutput.append(currentDirectory + "\n");
     }
 
     /**
      * Executes the command "cd" - set directory.
      */
-    public static void cd(String... args) {
+    private static void cd(String... args) {
         if (args.length > 0) {
             final File newDirectory = new File(args[0]);
 
@@ -65,7 +65,7 @@ public class CommandsExecutor {
      *
      * @param args - The args.
      */
-    public static void ls(final String... args) {
+    private static void ls(final String... args) {
         File directory = new File(currentDirectory);
 
         if (args.length > 0) {
@@ -89,7 +89,7 @@ public class CommandsExecutor {
      *
      * @param args - The args.
      */
-    public static void play(final String... args) {
+    private static void play(final String... args) {
         if (args.length > 0) {
             final File audio = new File(currentDirectory, args[0]);
 
@@ -108,7 +108,7 @@ public class CommandsExecutor {
      *
      * @param args - The args.
      */
-    public static void rename(final String... args) {
+    private static void rename(final String... args) {
         if (args.length > 1) {
             final File audio = new File(currentDirectory, args[0]);
             final File newAudio = new File(currentDirectory, args[1]);
@@ -117,6 +117,13 @@ public class CommandsExecutor {
                 shellOutput.append("File couldn't be renamed.\n");
             }
         }
+    }
+
+    /**
+     * Executes the command "clear" - clears the shell output.
+     */
+    private static void clear() {
+        shellOutput.setText("");
     }
 
     /**
@@ -147,6 +154,9 @@ public class CommandsExecutor {
             }
             case CommandsConstants.RENAME -> {
                 rename(args);
+            }
+            case CommandsConstants.CLEAR -> {
+                clear();
             }
             default -> {
                 shellOutput.append(TextConstants.SYNTAX_ERROR);

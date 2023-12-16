@@ -40,6 +40,11 @@ public class CommandsConstants {
     public final static String RENAME = "rename";
 
     /**
+     * Command constatn for CLEAR.
+     */
+    public final static String CLEAR = "clear";
+
+    /**
      * Map that links command to text to output.
      */
     protected final static Map<String, String> commandToTextMap = new HashMap<>();
