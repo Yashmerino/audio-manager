@@ -40,9 +40,14 @@ public class CommandsConstants {
     public final static String RENAME = "rename";
 
     /**
-     * Command constatn for CLEAR.
+     * Command constant for CLEAR.
      */
     public final static String CLEAR = "clear";
+
+    /**
+     * Command constant for SEARCH.
+     */
+    public final static String SEARCH = "search";
 
     /**
      * Map that links command to text to output.

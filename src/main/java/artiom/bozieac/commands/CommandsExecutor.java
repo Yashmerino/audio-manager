@@ -1,6 +1,5 @@
 package artiom.bozieac.commands;
 
-import artiom.bozieac.utils.ApplicationProperties;
 import artiom.bozieac.utils.AudioExtensions;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -10,6 +9,12 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 /**
  * Class that executes commands.
@@ -127,6 +132,37 @@ public class CommandsExecutor {
     }
 
     /**
+     * Executes the command "search" - search for regex in directories and subdirectories.
+     *
+     * @param args - The arguments.
+     */
+    private static void search(String... args) {
+        if (args.length > 0) {
+            final Pattern pattern = Pattern.compile(args[0]);
+            final File directory = new File(currentDirectory);
+
+            try {
+                List<Path> filesList = Files.walk(directory.toPath()).filter(Files::isRegularFile).toList();
+
+                boolean found = false;
+                for (Path file : filesList) {
+                    final String filename = file.toFile().getName();
+                    if (pattern.matcher(filename).matches()) {
+                        shellOutput.append(file.toFile().getAbsolutePath() + "\n");
+                        found = true;
+                    }
+                }
+
+                if (!found) {
+                    shellOutput.append("No matches found.\n");
+                }
+            } catch (IOException e) {
+                shellOutput.append("Search couldn't be performed.\n");
+            }
+        }
+    }
+
+    /**
      * Executes the method linked to the command.
      *
      * @param shellOutput - The JTextArea that stores the shell output.
@@ -157,6 +193,9 @@ public class CommandsExecutor {
             }
             case CommandsConstants.CLEAR -> {
                 clear();
+            }
+            case CommandsConstants.SEARCH -> {
+                search(args);
             }
             default -> {
                 shellOutput.append(TextConstants.SYNTAX_ERROR);
