@@ -16,7 +16,8 @@ public class TextConstants {
             "ls PATH - To print audio files in PATH directory.\n" +
             "play FILE - To play the FILE in the current directory.\n" +
             "search REGEX - To search for the file in current directory and its subdirectories using Regex.\n" +
-            "rename NAME NEW_NAME - To rename NAME file to NEW_NAME.\n";
+            "rename NAME NEW_NAME - To rename NAME file to NEW_NAME.\n" +
+            "clear - To clear the shell output.\n";
 
     /**
      * Text to output for non-existing command.
