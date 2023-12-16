@@ -29,6 +29,12 @@ public class CommandsConstants {
      * @return <code>String</code>
      */
     public static String getTextForCommand(final String command) {
-        return commandToTextMap.get(command);
+        String text = commandToTextMap.get(command);
+
+        if (text == null) {
+            return TextConstants.SYNTAX_ERROR;
+        }
+
+        return text;
     }
 }

@@ -11,4 +11,9 @@ public class TextConstants {
     public final static String HELP = "Existing commands:\n" +
             "help - To print existing commands.\n" +
             "help COMMAND - To print example of a command.\n";
+
+    /**
+     * Text to output for non-existing command.
+     */
+    public static final String SYNTAX_ERROR = "Syntax error. Command doesn't exist.\n";
 }

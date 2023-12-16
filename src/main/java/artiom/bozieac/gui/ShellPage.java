@@ -39,6 +39,8 @@ public class ShellPage {
 
                     if (command.equals(CommandsConstants.HELP)) {
                         shellOutput.append(CommandsConstants.getTextForCommand(CommandsConstants.HELP));
+                    } else {
+                        shellOutput.append(CommandsConstants.getTextForCommand(command));
                     }
                 }
             }
