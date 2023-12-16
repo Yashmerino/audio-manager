@@ -14,27 +14,22 @@ public class CommandsConstants {
     public final static String HELP = "help";
 
     /**
+     * Command constant for CDIR.
+     */
+    public final static String CDIR = "cdir";
+
+    /**
+     * Command constant for CD.
+     */
+    public final static String CD = "cd";
+
+    /**
      * Map that links command to text to output.
      */
-    private final static Map<String, String> commandToTextMap = new HashMap<>();
+    protected final static Map<String, String> commandToTextMap = new HashMap<>();
+
 
     static {
         commandToTextMap.put(HELP, TextConstants.HELP);
-    }
-
-    /**
-     * Returns text that should be printed in the shell for a command.
-     *
-     * @param command - The command.
-     * @return <code>String</code>
-     */
-    public static String getTextForCommand(final String command) {
-        String text = commandToTextMap.get(command);
-
-        if (text == null) {
-            return TextConstants.SYNTAX_ERROR;
-        }
-
-        return text;
     }
 }
