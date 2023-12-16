@@ -96,6 +96,22 @@ public class CommandsExecutor {
     }
 
     /**
+     * Executes the command "rename" - rename audio file.
+     *
+     * @param args - The args.
+     */
+    public static void rename(final String... args) {
+        if (args.length > 1) {
+            final File audio = new File(currentDirectory, args[0]);
+            final File newAudio = new File(currentDirectory, args[1]);
+
+            if (!audio.renameTo(newAudio)) {
+                shellOutput.append("File couldn't be renamed.\n");
+            }
+        }
+    }
+
+    /**
      * Executes the method linked to the command.
      *
      * @param shellOutput - The JTextArea that stores the shell output.
@@ -120,6 +136,9 @@ public class CommandsExecutor {
             }
             case CommandsConstants.PLAY -> {
                 play(args);
+            }
+            case CommandsConstants.RENAME -> {
+                rename(args);
             }
             default -> {
                 shellOutput.append(TextConstants.SYNTAX_ERROR);

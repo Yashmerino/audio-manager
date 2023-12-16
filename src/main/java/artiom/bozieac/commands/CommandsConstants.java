@@ -33,6 +33,12 @@ public class CommandsConstants {
      */
     public final static String PLAY = "play";
 
+
+    /**
+     * Command constant for RENAME.
+     */
+    public final static String RENAME = "rename";
+
     /**
      * Map that links command to text to output.
      */
