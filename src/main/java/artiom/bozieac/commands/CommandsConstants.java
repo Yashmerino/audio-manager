@@ -24,6 +24,11 @@ public class CommandsConstants {
     public final static String CD = "cd";
 
     /**
+     * Command constant for LS.
+     */
+    public final static String LS = "ls";
+
+    /**
      * Map that links command to text to output.
      */
     protected final static Map<String, String> commandToTextMap = new HashMap<>();

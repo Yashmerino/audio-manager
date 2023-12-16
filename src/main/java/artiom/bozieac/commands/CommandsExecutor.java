@@ -1,5 +1,7 @@
 package artiom.bozieac.commands;
 
+import artiom.bozieac.utils.AudioExtensions;
+
 import javax.swing.*;
 import java.io.File;
 import java.nio.file.FileSystems;
@@ -49,6 +51,22 @@ public class CommandsExecutor {
     }
 
     /**
+     * Executes the command "ls" - list audio files.
+     */
+    public static void ls() {
+        final File directory = new File(currentDirectory);
+        File[] files = directory.listFiles();
+
+        if (files != null) {
+            for (File file : files) {
+                if (AudioExtensions.isAudioFile(file.getName())) {
+                    shellOutput.append(file.getName() + "\n");
+                }
+            }
+        }
+    }
+
+    /**
      * Executes the method linked to the command.
      *
      * @param shellOutput - The JTextArea that stores the shell output.
@@ -67,6 +85,9 @@ public class CommandsExecutor {
             }
             case CommandsConstants.CD -> {
                 cd(args);
+            }
+            case CommandsConstants.LS -> {
+                ls();
             }
             default -> {
                 shellOutput.append(TextConstants.SYNTAX_ERROR);
