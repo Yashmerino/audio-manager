@@ -12,10 +12,10 @@ public class TextConstants {
             "help - To print existing commands.\n" +
             "cdir - To print current directory.\n" +
             "cd PATH - To set a new directory.\n" +
-            "ls - To print audio files in the currrent directory.\n" +
-            "ls PATH - To print audio files in PATH directory.\n" +
+            "ls - To print audio files in the current directory.\n" +
+            "ls PATH - To print audio files in the PATH directory.\n" +
             "play FILE - To play the FILE in the current directory.\n" +
-            "search REGEX - To search for the file in current directory and its subdirectories using Regex.\n" +
+            "search REGEX - To search for the file in the current directory and its subdirectories using Regex.\n" +
             "rename NAME NEW_NAME - To rename NAME file to NEW_NAME.\n" +
             "clear - To clear the shell output.\n";
 
